@@ -1,0 +1,12 @@
+#!/bin/bash
+for i in `cat servers`
+do
+sshpass -p 'C0mp13x#' ssh -o StrictHostKeyChecking=no root@$i <<EOF
+echo ""
+echo -n "Hostname: " 
+hostname; 
+echo -n "Free space over root partition: "
+df -h | grep -w / | awk '{print \$3}'
+echo ""
+EOF
+done
